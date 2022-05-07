@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minesweeper</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Mines: <span id="mines-count">0</span></h1>
+    <br />
+    <div id="board">
+      <form class="settings">
+        <label for="mn">mines count</label>
+        <input type="range" min="5" max="10" id="mn" value="5" oninput="setMN()">
+        <span id="mn-val">5</span>
+        <br />
+        <label for="tpl">tiles per line</label>
+        <input type="range" min="5" max="10" id="tpl" value="5" oninput="setTPL()">
+        <span id="tpl-val">5</span>
+        <br />
+        <button type="button" onclick="start()">start</button>
+      </form>
+    </div>
+    <br />
+    <button id="flag-button">♧</button>
+  </header>
+  <script src="script.js"></script>
+</body>
+</html>

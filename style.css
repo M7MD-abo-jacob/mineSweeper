@@ -1,0 +1,87 @@
+*{
+  box-sizing: border-box;
+  margin: 0;
+}
+
+body{
+  font-weight: bold;
+  text-align: center;
+  margin: 0 auto;
+}
+h1{
+  font-size: 3rem;
+}
+
+form{
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+form>*{
+  width: 100%;
+  font-size: 2rem;
+}
+form>button{
+  margin-top: 5px;
+  width: 50%;
+}
+
+#board{
+  width: 98%;
+  height: 70vh;
+  border: 10px solid darkgray;
+  background-color: lightgray;
+  margin: 0 auto;
+  
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#board div{
+  width: 12.5%;
+  height: 12.5%;
+  border: 1px solid whitesmoke;
+  
+  /* text */
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.tile-clicked{
+  background-color: darkgray;
+}
+
+.x1{
+  color: blue;
+}
+.x2{
+  color: green;
+}
+.x3{
+  color: red;
+}
+.x4{
+  color: aqua;
+}
+.x5{
+  color: fuchsia;
+}
+.x6{
+  color: orange;
+}
+
+#flag-button{
+  height: 3%;
+  width: 30vw;
+  background-color: lightgray;
+  
+  color: red;
+  font-weight: bold;
+  font-size: 30px;
+}
