@@ -1,11 +1,15 @@
 var board = []; //2d array
-var lines;
+var lines = 0;
 var minesCount = 0;
 var minesLocations = []; //on 2d array
 var tilesClicked = 0; //win when lines*lines-mines == 0
 var flagToggled = false; //to flag tiles
 var gameOver = false;
 
+var gameStarted = false; //used is setMines() just to make sure the first tile clicked is not a mine
+
+// first fired when the start button is clicked
+// removes input form and sets values
 function start(){
   minesCount = document.getElementById("mn").value;
   lines = document.getElementById("tpl").value;
@@ -14,23 +18,10 @@ function start(){
   startGame();
 }
 
-function setMines() {
-  let minesLeft = minesCount;
-  while (minesLeft > 0) {
-    let r = Math.floor(Math.random() * lines);
-    let c = Math.floor(Math.random() * lines);
-    let id = r.toString() +"-"+ c.toString();
-    if (!minesLocations.includes(id)) {
-      minesLocations.push(id);
-      minesLeft -= 1;
-    }
-  }
-}
-
+// divides the board into tiles with some attributes
 function startGame() {
   document.getElementById("mines-count").innerText = minesCount;
   document.getElementById("flag-button").addEventListener("click", toggleFlag);
-  setMines();
 
   for (let r = 0; r < lines; r++) {
     let row = [];
@@ -47,64 +38,113 @@ function startGame() {
   }
 }
 
-function toggleFlag() {
-  if (flagToggled) {
-    flagToggled = false;
-    document.getElementById("flag-button").style.backgroundColor = "lightgray";
-  } else {
-    flagToggled = true;
-    document.getElementById("flag-button").style.backgroundColor = "darkgray";
+// sets default values and starts a new game when the smilie button is clicked
+function newGame(){
+  if(flagToggled){toggleFlag();}
+  gameOver = true;
+  
+  for(let i=0; i<lines * lines; i++){
+    document.getElementById("board").children[1].remove();
+    // 1 not 0 because i used form as the first child of the board element, using 0 will result in an error
+  }
+  document.getElementById("smile").innerText = ": )";
+  gameStarted = false;
+  gameOver = false;
+  tilesClicked = 0;
+  minesLocations = [];
+  board = [];
+  
+  startGame();
+}
+
+// randomly spreads mines except for the first tile clicked
+function setMines(tile) {
+  let minesLeft = minesCount;
+  while (minesLeft > 0) {
+    let r = Math.floor(Math.random() * lines);
+    let c = Math.floor(Math.random() * lines);
+    let id = r.toString() +"-"+ c.toString();
+    if (!minesLocations.includes(id) && (id != tile.id)) {
+      minesLocations.push(id);
+      minesLeft -= 1;
+    }
   }
 }
 
+// toggles flag button
+function toggleFlag() {
+  if (flagToggled) {
+    flagToggled = false;
+    document.getElementById("flag-button").style.backgroundColor = "#ccc";
+  } else {
+    flagToggled = true;
+    document.getElementById("flag-button").style.backgroundColor = "#555";
+  }
+}
+
+// first fired when a tile is ckicked
 function clickTile() {
   let tile = this;
-  if (gameOver || tile.classList.contains("tile-clicked")) {
+  let mc = document.getElementById("mines-count").innerText;
+  if(!gameStarted){
+    setMines(tile);
+    gameStarted = true;
+  }
+  if (gameOver /*|| tile.classList.contains("tile-clicked") */|| (tile.innerText == "♧" && !flagToggled)){
     return;
   }
   if (flagToggled) {
-    if (tile.innerText == "") {
+    if (tile.innerText == "" && mc > 0) {
       tile.innerText = "♧";
+      document.getElementById("mines-count").innerText -=1;
     } else {
       if (tile.innerText == "♧") {
         tile.innerText = "";
+        document.getElementById("mines-count").innerText = parseInt(mc) + 1;
       }
       return;
     }
   } else {
     if (minesLocations.includes(tile.id)) {
       gameOver = true;
+      document.getElementById("smile").innerText = ": p";
       revealMines("red");
       alert("GAME OVER");
       return;
-    }
-
+    } 
     let coords = tile.id.split("-"); //"2-3" => [2,3]
     let r = parseInt(coords[0]);
     let c = parseInt(coords[1]);
     checkMine(r, c);
   }}
 
+// reveals mines when lose or win
 function revealMines(clr) {
   for (let r = 0; r < lines; r++) {
     for (let c = 0; c < lines; c++) {
       let tile = board[r][c];
       if (minesLocations.includes(tile.id)) {
-        tile.innerText = "♧"
+        tile.innerText = "♧";
         tile.style.backgroundColor = clr;
+        tile.style.borderColor = clr;
       }
     }
   }
 }
 
+// basically everything
 function checkMine(r, c) {
+  // makes sure to stay inside the board
   if (r < 0 || r >= lines || c < 0 || c >= lines) {
     return;
   }
+  // do nothing if this tile is clicked
   if (board[r][c].classList.contains("tile-clicked")) {
     return;
   }
   board[r][c].classList.add("tile-clicked");
+  board[r][c].style.border = "1px solid whitesmoke";
+  // checking how many mines are around this tile
   tilesClicked += 1;
   let minesFound = 0;
   minesFound += checkTile(r-1, c-1); //top left
@@ -115,11 +155,14 @@ function checkMine(r, c) {
   minesFound += checkTile(r+1, c-1); //bottom left
   minesFound += checkTile(r+1, c); //bottom
   minesFound += checkTile(r+1, c+1); //bottom right
+  // sets an appropriate number if mines found around this tile
   if (minesFound > 0) {
     board[r][c].innerText = minesFound;
     board[r][c].classList.add("x"+minesFound.toString());
     board[r][c].classList.add("tile-clicked");
+  board[r][c].style.border = "1px solid whitesmoke";
   } else {
+    // if no mines found around, it keeps opening blank tiles
     checkMine(r-1, c-1); //top left
     checkMine(r-1, c); //top
     checkMine(r-1, c+1); //top right
@@ -129,13 +172,16 @@ function checkMine(r, c) {
     checkMine(r+1, c); //bottom
     checkMine(r+1, c+1); //bottom right
   }
+  // you win when all tiles but mines are clicked
   if (tilesClicked == (lines * lines - minesCount)) {
-    document.getElementById("mines-count").innerText = "Cleared";
+    document.getElementById("mines-count").innerText = "0";
+    document.getElementById("smile").innerText = ": D"
     revealMines("limegreen");
     gameOver = true;
   }
 }
 
+// adds 1 to checkMine() for every mine found
 function checkTile(r, c) {
   if (r < 0 || r >= lines || c < 0 || c >= lines) {
     return 0;
@@ -146,13 +192,12 @@ function checkTile(r, c) {
   return 0;
 }
 
-
+// taking user input: minesCount and lines
 function setMN() {
   let mn = document.getElementById("mn");
   let mnVal = document.getElementById("mn-val");
   mnVal.innerText = mn.value;
 }
-
 function setTPL() {
   let tpl = document.getElementById("tpl");
   let tplVal = document.getElementById("tpl-val");

@@ -1,15 +1,57 @@
 *{
   box-sizing: border-box;
-  margin: 0;
+  margin: 0 auto;
 }
 
 body{
   font-weight: bold;
   text-align: center;
   margin: 0 auto;
+  max-width: 800px;
+  max-height: 100%;
+  overflow: hidden;
 }
-h1{
-  font-size: 3rem;
+header{
+  margin: 0 0;
+  height: 10vh;
+  width: 100%;
+  background-color: #eee;
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  align-items: center;
+}
+header button{
+  width: 20vw;
+  height: 6vh;
+}
+button:disabled{
+  background-color: #555;
+  font-weight: bold;
+  color: #f55;
+  border: 2px inset red;
+}
+#smilie{
+  
+  width: 25vw;
+  height: 8vh;
+}
+#smile{
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  transform: rotate(90deg);
+  color: #000;
+  background-color: #ff0;
+  border: 1px solid #991;
+  border-radius: 100%;
+}
+#flag-button{
+  font-weight: bold;
+  color: #f55;
+  
 }
 
 form{
@@ -40,23 +82,44 @@ form>button{
   flex-wrap: wrap;
 }
 
+/*tiles*/
 #board div{
   width: 12.5%;
   height: 12.5%;
-  border: 1px solid whitesmoke;
+  border: 3px outset whitesmoke;
   
   /* text */
-  font-size: 30px;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-.tile-clicked{
-  background-color: darkgray;
+/*socials*/
+footer{
+  display: none;
+}
+footer .socials{
+}
+footer .socials ul{
+  list-style: none;
+}
+footer ul::before{
+  content: "《";
+  display: block;
+  transform: rotate(90deg);
+}
+footer ul::before:hover ul{
+}
+footer ul li{
+  height: 30px;
+}
+footer ul a{
+  text-decoration: none;
+  color: black;
 }
 
+/*giving different colors for different numbers*/
 .x1{
   color: blue;
 }
@@ -74,14 +137,4 @@ form>button{
 }
 .x6{
   color: orange;
-}
-
-#flag-button{
-  height: 3%;
-  width: 30vw;
-  background-color: lightgray;
-  
-  color: red;
-  font-weight: bold;
-  font-size: 30px;
 }

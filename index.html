@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<!--
+HELLO WORLD!
+this is my first ever project with HTML, CSS and JS.
+I did ask google for some help at the beginning but what matters is the learning process, and this project was a really interesting one for me, especially the JS part of it. (it is mostly JS code)
+it may look a bit funny, but I'm proud of it.
+please let me know if you have any suggestions, and I hope you like it.
+-->
 <html>
 <head>
   <meta charset="UTF-8" />
@@ -8,9 +15,19 @@
 </head>
 <body>
   <header>
-    <h1>Mines: <span id="mines-count">0</span></h1>
-    <br />
+    <div>
+      <button disabled>mines: <span id="mines-count">0</span></button>
+      </div>
+    <div class="new-game">
+      <button id="smilie" onclick="newGame()"> <div id="smile">: )</div></button>
+    </div>
+    <div>
+      <button id="flag-button">♧</button>
+    </div>
+  </header>
+  <main>
     <div id="board">
+      <!--the input form at the beginning-->
       <form class="settings">
         <label for="mn">mines count</label>
         <input type="range" min="5" max="10" id="mn" value="5" oninput="setMN()">
@@ -23,9 +40,16 @@
         <button type="button" onclick="start()">start</button>
       </form>
     </div>
-    <br />
-    <button id="flag-button">♧</button>
-  </header>
+  </main>
+  <footer>
+    <div class="socials">
+      <ul>
+        <li><a href="facebook.com">Facebook</a></li>
+        <li><a href="instagram.com">Instagram</a></li>
+        <li><a href="github.com">Github</a></li>
+      </ul>
+    </div>
+  </footer>
   <script src="script.js"></script>
 </body>
 </html>
