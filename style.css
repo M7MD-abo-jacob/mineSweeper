@@ -1,21 +1,23 @@
 *{
   box-sizing: border-box;
   margin: 0 auto;
+  padding: 0;
 }
 
 body{
+  margin: 0 auto;
   font-weight: bold;
   text-align: center;
-  margin: 0 auto;
-  max-width: 800px;
-  max-height: 100%;
+  max-width: min(800px, 98%);
   overflow: hidden;
+  background-color: rgb(125, 200, 200);
 }
 header{
   margin: 0 0;
   height: 10vh;
   width: 100%;
-  background-color: #eee;
+  /*background-color: #eee;*/
+  background-color: rgb(125, 200, 200);
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -39,18 +41,10 @@ button:disabled{
 #smile{
   text-align: center;
   margin: 0 auto;
-  font-size: 1rem;
-  width: 1.5rem;
-  height: 1.5rem;
-  transform: rotate(90deg);
-  color: #000;
-  background-color: #ff0;
-  border: 1px solid #991;
-  border-radius: 100%;
+  color: #44e;
 }
 #flag-button{
-  font-weight: bold;
-  color: #f55;
+  color: #e44;
   
 }
 
@@ -72,10 +66,10 @@ form>button{
 }
 
 #board{
-  width: 98%;
+  width: 100%;
   height: 70vh;
-  border: 10px solid darkgray;
-  background-color: lightgray;
+  border: 10px solid rgb(70, 70, 200);
+  background-color: rgb(0,160,214);
   margin: 0 auto;
   
   display: flex;
@@ -97,22 +91,46 @@ form>button{
 
 /*socials*/
 footer{
-  display: none;
+  position: fixed;
+  left: 50%;
+  transform: translate(-50%);
+  height: 130px;
+  width: 100%;
+  transition: 0.8s;
 }
-footer .socials{
+footer.shown{
+  bottom: 0;
 }
-footer .socials ul{
+footer.hidden{
+  bottom: -90px;
+}
+footer div{
+  margin: 0;
+  padding: 0;
+}
+.footer-button{
+  font-size: 1rem;
+  padding-inline: 20px;
+  height: 40px;
+  text-align: center;
+  margin: 0;
+  
+  border: none;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #5599ff;
+}
+footer ul{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-color: #5599ff;
   list-style: none;
-}
-footer ul::before{
-  content: "《";
-  display: block;
-  transform: rotate(90deg);
-}
-footer ul::before:hover ul{
+  padding-top: 5px;
+  margin: 0;
 }
 footer ul li{
   height: 30px;
+  width: min(50%, 200px);
 }
 footer ul a{
   text-decoration: none;
@@ -136,5 +154,11 @@ footer ul a{
   color: fuchsia;
 }
 .x6{
+  color: orange;
+}
+.x7{
+  color: orange;
+}
+.x8{
   color: orange;
 }

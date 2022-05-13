@@ -5,6 +5,7 @@ var minesLocations = []; //on 2d array
 var tilesClicked = 0; //win when lines*lines-mines == 0
 var flagToggled = false; //to flag tiles
 var gameOver = false;
+var mineClass = "fa-bomb"; // added when mine is flagged
 
 var gameStarted = false; //used is setMines() just to make sure the first tile clicked is not a mine
 
@@ -26,11 +27,19 @@ function startGame() {
   for (let r = 0; r < lines; r++) {
     let row = [];
     for (let c = 0; c < lines; c++) {
+      // creating <div> tiles
       let tile = document.createElement("div");
+      // creating <i> element inside every <div> tile and adding font awesome basics for when a tile is flagged we only need to add "fa-bomb"
+      let mineSetting = document.createElement("i");
+      mineSetting.classList.add("fa-xs");
+      mineSetting.classList.add("fa-solid");
+      tile.append(mineSetting);
+      // giving each <div> an id, EventListener and some styling
       tile.id = r.toString() +"-"+ c.toString();
       tile.addEventListener("click", clickTile);
       tile.style.width = 100 / lines+ "%";
       tile.style.height = 100 / lines+"%";
+      // appening the tile onto the board
       document.getElementById("board").append(tile);
       row.push(tile);
     }
@@ -47,7 +56,10 @@ function newGame(){
     document.getElementById("board").children[1].remove();
     // 1 not 0 because i used form as the first child of the board element, using 0 will result in an error
   }
-  document.getElementById("smile").innerText = ": )";
+  document.getElementById("smile").children[0].classList.remove("fa-face-frown");
+  document.getElementById("smile").children[0].classList.remove("fa-face-grin-stars");
+  document.getElementById("smile").children[0].classList.remove("fa-face-smile-beam");
+  document.getElementById("smile").children[0].classList.add("fa-face-smile-beam");
   gameStarted = false;
   gameOver = false;
   tilesClicked = 0;
@@ -90,16 +102,16 @@ function clickTile() {
     setMines(tile);
     gameStarted = true;
   }
-  if (gameOver /*|| tile.classList.contains("tile-clicked") */|| (tile.innerText == "♧" && !flagToggled)){
+  if (gameOver || (tile.children[0].classList.contains(mineClass) && !flagToggled)){
     return;
   }
   if (flagToggled) {
-    if (tile.innerText == "" && mc > 0) {
-      tile.innerText = "♧";
+    if (!tile.children[0].classList.contains(mineClass) && mc > 0) {
+      tile.children[0].classList.add(mineClass);
       document.getElementById("mines-count").innerText -=1;
     } else {
-      if (tile.innerText == "♧") {
-        tile.innerText = "";
+      if (tile.children[0].classList.contains(mineClass)) {
+        tile.children[0].classList.remove(mineClass);
         document.getElementById("mines-count").innerText = parseInt(mc) + 1;
       }
       return;
@@ -107,7 +119,8 @@ function clickTile() {
   } else {
     if (minesLocations.includes(tile.id)) {
       gameOver = true;
-      document.getElementById("smile").innerText = ": p";
+      document.getElementById("smile").children[0].classList.remove("fa-face-smile-beam");
+      document.getElementById("smile").children[0].classList.add("fa-face-frown");
       revealMines("red");
       alert("GAME OVER");
       return;
@@ -124,7 +137,7 @@ function revealMines(clr) {
     for (let c = 0; c < lines; c++) {
       let tile = board[r][c];
       if (minesLocations.includes(tile.id)) {
-        tile.innerText = "♧";
+        tile.children[0].classList.add(mineClass);
         tile.style.backgroundColor = clr;
         tile.style.borderColor = clr;
       }
@@ -144,6 +157,8 @@ function checkMine(r, c) {
   }
   board[r][c].classList.add("tile-clicked");
   board[r][c].style.border = "1px solid whitesmoke";
+  board[r][c].style.backgroundColor = "rgb(125, 200, 200)";
+  
   // checking how many mines are around this tile
   tilesClicked += 1;
   let minesFound = 0;
@@ -161,6 +176,7 @@ function checkMine(r, c) {
     board[r][c].classList.add("x"+minesFound.toString());
     board[r][c].classList.add("tile-clicked");
   board[r][c].style.border = "1px solid whitesmoke";
+  board[r][c].style.backgroundColor = "rgb(125, 200, 200)";
   } else {
     // if no mines found around, it keeps opening blank tiles
     checkMine(r-1, c-1); //top left
@@ -175,7 +191,8 @@ function checkMine(r, c) {
   // you win when all tiles but mines are clicked
   if (tilesClicked == (lines * lines - minesCount)) {
     document.getElementById("mines-count").innerText = "0";
-    document.getElementById("smile").innerText = ": D"
+    document.getElementById("smile").children[0].classList.remove("fa-face-smile-beam");
+    document.getElementById("smile").children[0].classList.add("fa-face-grin-stars");
     revealMines("limegreen");
     gameOver = true;
   }
@@ -193,13 +210,26 @@ function checkTile(r, c) {
 }
 
 // taking user input: minesCount and lines
+// mines number
 function setMN() {
   let mn = document.getElementById("mn");
   let mnVal = document.getElementById("mn-val");
   mnVal.innerText = mn.value;
 }
+//tiles per line, board's width and height
 function setTPL() {
   let tpl = document.getElementById("tpl");
   let tplVal = document.getElementById("tpl-val");
   tplVal.innerText = tpl.value;
+}
+
+// to show social accounts
+function toggleFooter(){
+  if(document.getElementsByTagName("footer")[0].classList.contains("hidden")){
+    document.getElementsByTagName("footer")[0].classList.remove("hidden");
+    document.getElementsByTagName("footer")[0].classList.add("shown");
+  }else{
+    document.getElementsByTagName("footer")[0].classList.remove("shown");
+    document.getElementsByTagName("footer")[0].classList.add("hidden");
+  }
 }
