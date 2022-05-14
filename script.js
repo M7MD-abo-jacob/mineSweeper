@@ -90,7 +90,7 @@ function toggleFlag() {
     document.getElementById("flag-button").style.backgroundColor = "#ccc";
   } else {
     flagToggled = true;
-    document.getElementById("flag-button").style.backgroundColor = "#555";
+    document.getElementById("flag-button").style.backgroundColor = "#666";
   }
 }
 

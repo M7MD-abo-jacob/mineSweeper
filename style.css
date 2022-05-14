@@ -60,27 +60,23 @@ header .options-icon:hover .side-panel{
   right: -0.7rem;
 }
 .side-panel .game-image{
-  margin: 0 auto;
-  width: 100px;
-  height: 100px;
+  margin: 2rem auto;
+  width: 5rem;
+  height: 5rem;
 }
 .side-panel .game-image i{
   text-align: center;
-  color: #ccc;
+  color: rgb(255,210,0);
 }
 .side-panel .socials ul{
   font-size: 1em;
   list-style: none;
-  padding-top: 5px;
   margin: 0;
   text-align: left;
   padding: 1em;
 }
 .socials ul li{
   height: 2rem;
-}
-.socials ul:first-child{
-  padding-top: 1rem;
 }
 .socials ul a{
   text-decoration: none;
@@ -103,20 +99,20 @@ header .options-icon:hover .side-panel{
 }
 button:disabled{
   font-size: 0.8rem;
-  background-color: #555;
+  background-color: #666;
   font-weight: bold;
   color: #f55;
   border: 2px inset red;
 }
 #smilie{
-  
+  background-color: #666;
   width: 25vw;
   height: 8vh;
 }
 #smile{
   text-align: center;
   margin: 0 auto;
-  color: #44e;
+  color: #fd0;
 }
 #flag-button{
   color: #e44;
