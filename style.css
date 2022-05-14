@@ -6,6 +6,7 @@
 html{
   font-size: 17px;
   overflow: hidden;
+  font-family: Serif;
 }
 @media (min-width: 700px){
   html{
@@ -29,7 +30,7 @@ header{
   margin: 0;
 }
 header .container{
-  padding: 0.7rem;
+  padding: 0.2rem;
   display: flex;
   justify-content: space-between;
   align-content: center;
@@ -37,6 +38,12 @@ header .container{
 }
 header .container div{
   margin: 0;
+}
+header .brand h3{
+  font-size: 2rem;
+  font-variant: small-caps;
+  font-weight: 900;
+  font-family: cursive;
 }
 header .options-icon{
   position: relative;
@@ -49,10 +56,10 @@ header .side-panel{
   right: -20rem;
   transition: 0.5s;
   height: 100vh;
-  width: min(500px, 40vw);
+  width: min(500px, 50vw);
   background-color: #666;
 }
-@media (min-width: 700px){
+@media (min-width: 760px){
   header .side-panel{
     right: -1000px;
   }
