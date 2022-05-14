@@ -108,6 +108,7 @@ function clickTile() {
   if (flagToggled) {
     if (!tile.children[0].classList.contains(mineClass) && mc > 0) {
       tile.children[0].classList.add(mineClass);
+      tile.children[0].style.color = "#e66";
       document.getElementById("mines-count").innerText -=1;
     } else {
       if (tile.children[0].classList.contains(mineClass)) {
@@ -140,6 +141,7 @@ function revealMines(clr) {
         tile.children[0].classList.add(mineClass);
         tile.style.backgroundColor = clr;
         tile.style.borderColor = clr;
+        tile.children[0].style.color = "black";
       }
     }
   }

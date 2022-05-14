@@ -32,6 +32,8 @@ header .container{
   padding: 0.7rem;
   display: flex;
   justify-content: space-between;
+  align-content: center;
+  align-items: center;
 }
 header .container div{
   margin: 0;
@@ -115,7 +117,7 @@ button:disabled{
   color: #fd0;
 }
 #flag-button{
-  color: #e44;
+  color: #e66;
   
 }
 
