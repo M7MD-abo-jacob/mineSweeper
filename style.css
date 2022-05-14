@@ -3,31 +3,106 @@
   margin: 0 auto;
   padding: 0;
 }
+html{
+  font-size: 17px;
+  overflow: hidden;
+}
+@media (min-width: 700px){
+  html{
+    font-size: 30px;
+  }
+}
 
 body{
   margin: 0 auto;
+  overflow: hidden;
   font-weight: bold;
   text-align: center;
   max-width: min(800px, 98%);
-  overflow: hidden;
-  background-color: rgb(125, 200, 200);
+  background-color: #222;
 }
 header{
+  background-color: #000;
+  color: #ccc;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+header .container{
+  padding: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+}
+header .container div{
+  margin: 0;
+}
+header .options-icon{
+  position: relative;
+}
+header .side-panel{
+  position: absolute;
+  margin-top: 0;
+  margin-right: 0;
+  top: -0.7rem;
+  right: -20rem;
+  transition: 0.5s;
+  height: 100vh;
+  width: min(500px, 40vw);
+  background-color: #666;
+}
+@media (min-width: 700px){
+  header .side-panel{
+    right: -1000px;
+  }
+}
+
+header .options-icon:hover .side-panel{
+  right: -0.7rem;
+}
+.side-panel .game-image{
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
+}
+.side-panel .game-image i{
+  text-align: center;
+  color: #ccc;
+}
+.side-panel .socials ul{
+  font-size: 1em;
+  list-style: none;
+  padding-top: 5px;
+  margin: 0;
+  text-align: left;
+  padding: 1em;
+}
+.socials ul li{
+  height: 2rem;
+}
+.socials ul:first-child{
+  padding-top: 1rem;
+}
+.socials ul a{
+  text-decoration: none;
+  color: #aaf;
+}
+
+.controls{
   margin: 0 0;
   height: 10vh;
   width: 100%;
-  /*background-color: #eee;*/
-  background-color: rgb(125, 200, 200);
   display: flex;
   justify-content: space-between;
   align-content: center;
   align-items: center;
+  background-color: #000;
 }
-header button{
+.controls button{
   width: 20vw;
   height: 6vh;
 }
 button:disabled{
+  font-size: 0.8rem;
   background-color: #555;
   font-weight: bold;
   color: #f55;
@@ -49,12 +124,16 @@ button:disabled{
 }
 
 form{
+  color: #fff;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   align-content: center;
+}
+form span{
+  color: #aaf;
 }
 form>*{
   width: 100%;
@@ -68,8 +147,8 @@ form>button{
 #board{
   width: 100%;
   height: 70vh;
-  border: 10px solid rgb(70, 70, 200);
-  background-color: rgb(0,160,214);
+  border: 10px solid #000;
+  background-color: #333;
   margin: 0 auto;
   
   display: flex;
@@ -91,27 +170,28 @@ form>button{
 
 /*socials*/
 footer{
+  font-size: 1rem;
   position: fixed;
+  bottom: -6rem;
   left: 50%;
   transform: translate(-50%);
-  height: 130px;
+  height: 8rem;
   width: 100%;
   transition: 0.8s;
 }
-footer.shown{
+footer:hover{
   bottom: 0;
-}
-footer.hidden{
-  bottom: -90px;
 }
 footer div{
   margin: 0;
   padding: 0;
+  margin-top: -1px;
 }
 .footer-button{
-  font-size: 1rem;
+  font-size: 1em;
   padding-inline: 20px;
-  height: 40px;
+  float: bottom;
+  height: 1.7em;
   text-align: center;
   margin: 0;
   
@@ -121,6 +201,7 @@ footer div{
   background-color: #5599ff;
 }
 footer ul{
+  font-size: 1em;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
   background-color: #5599ff;
@@ -129,8 +210,11 @@ footer ul{
   margin: 0;
 }
 footer ul li{
-  height: 30px;
+  height: 2rem;
   width: min(50%, 200px);
+}
+footer ul:first-child{
+  padding-top: 1rem;
 }
 footer ul a{
   text-decoration: none;
@@ -139,10 +223,10 @@ footer ul a{
 
 /*giving different colors for different numbers*/
 .x1{
-  color: blue;
+  color: rgb(0,170,255);
 }
 .x2{
-  color: green;
+  color: limegreen;
 }
 .x3{
   color: red;

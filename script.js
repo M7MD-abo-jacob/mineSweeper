@@ -157,7 +157,7 @@ function checkMine(r, c) {
   }
   board[r][c].classList.add("tile-clicked");
   board[r][c].style.border = "1px solid whitesmoke";
-  board[r][c].style.backgroundColor = "rgb(125, 200, 200)";
+  board[r][c].style.backgroundColor = "#666";
   
   // checking how many mines are around this tile
   tilesClicked += 1;
@@ -176,7 +176,7 @@ function checkMine(r, c) {
     board[r][c].classList.add("x"+minesFound.toString());
     board[r][c].classList.add("tile-clicked");
   board[r][c].style.border = "1px solid whitesmoke";
-  board[r][c].style.backgroundColor = "rgb(125, 200, 200)";
+  board[r][c].style.backgroundColor = "#666";
   } else {
     // if no mines found around, it keeps opening blank tiles
     checkMine(r-1, c-1); //top left
@@ -221,15 +221,4 @@ function setTPL() {
   let tpl = document.getElementById("tpl");
   let tplVal = document.getElementById("tpl-val");
   tplVal.innerText = tpl.value;
-}
-
-// to show social accounts
-function toggleFooter(){
-  if(document.getElementsByTagName("footer")[0].classList.contains("hidden")){
-    document.getElementsByTagName("footer")[0].classList.remove("hidden");
-    document.getElementsByTagName("footer")[0].classList.add("shown");
-  }else{
-    document.getElementsByTagName("footer")[0].classList.remove("shown");
-    document.getElementsByTagName("footer")[0].classList.add("hidden");
-  }
 }
