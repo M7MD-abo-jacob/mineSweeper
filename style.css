@@ -1,253 +1,288 @@
-*{
-  box-sizing: border-box;
-  margin: 0 auto;
-  padding: 0;
-}
-html{
-  font-size: 17px;
-  overflow: hidden;
-  font-family: Serif;
-}
-@media (min-width: 700px){
-  html{
-    font-size: 30px;
-  }
+* {
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 0;
 }
 
-body{
-  margin: 0 auto;
-  overflow: hidden;
-  font-weight: bold;
-  text-align: center;
-  max-width: min(800px, 98%);
-  background-color: #222;
-}
-header{
-  background-color: #000;
-  color: #ccc;
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-header .container{
-  padding: 0.2rem;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-}
-header .container div{
-  margin: 0;
-}
-header .brand h3{
-  font-size: 2rem;
-  font-variant: small-caps;
-  font-weight: 900;
-  font-family: cursive;
-}
-header .options-icon{
-  position: relative;
-}
-header .side-panel{
-  position: absolute;
-  margin-top: 0;
-  margin-right: 0;
-  top: -0.7rem;
-  right: -20rem;
-  transition: 0.5s;
-  height: 100vh;
-  width: min(500px, 50vw);
-  background-color: #666;
-}
-@media (min-width: 760px){
-  header .side-panel{
-    right: -1000px;
-  }
+html {
+    font-size: 17px;
+    overflow-x: hidden;
+    font-family: Serif;
 }
 
-header .options-icon:hover .side-panel{
-  right: -0.7rem;
-}
-.side-panel .game-image{
-  margin: 2rem auto;
-  width: 5rem;
-  height: 5rem;
-}
-.side-panel .game-image i{
-  text-align: center;
-  color: rgb(255,210,0);
-}
-.side-panel .socials ul{
-  font-size: 1em;
-  list-style: none;
-  margin: 0;
-  text-align: left;
-  padding: 1em;
-}
-.socials ul li{
-  height: 2rem;
-}
-.socials ul a{
-  text-decoration: none;
-  color: #aaf;
+body {
+    margin: 0 auto;
+    overflow: hidden;
+    font-weight: bold;
+    text-align: center;
+    width: min(500px, 98%);
+    background-color: #222;
 }
 
-.controls{
-  margin: 0 0;
-  height: 10vh;
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-content: center;
-  align-items: center;
-  background-color: #000;
-}
-.controls button{
-  width: 20vw;
-  height: 6vh;
-}
-button:disabled{
-  font-size: 0.8rem;
-  background-color: #666;
-  font-weight: bold;
-  color: #f55;
-  border: 2px inset red;
-}
-#smilie{
-  background-color: #666;
-  width: 25vw;
-  height: 8vh;
-}
-#smile{
-  text-align: center;
-  margin: 0 auto;
-  color: #fd0;
-}
-#flag-button{
-  color: #e66;
-  
+header {
+    background-color: #000;
+    color: #ccc;
+    width: 100%;
+    padding: 0;
+    margin: 0;
 }
 
-form{
-  color: #fff;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-}
-form span{
-  color: #aaf;
-}
-form>*{
-  width: 100%;
-  font-size: 2rem;
-}
-form>button{
-  margin-top: 5px;
-  width: 50%;
+header .container {
+    padding: 0.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
 }
 
-#board{
-  width: 100%;
-  height: 70vh;
-  border: 10px solid #000;
-  background-color: #333;
-  margin: 0 auto;
-  
-  display: flex;
-  flex-wrap: wrap;
+header .container div {
+    margin: 0;
 }
+
+header .brand h3 {
+    font-size: 2rem;
+    font-variant: small-caps;
+    font-weight: 900;
+    font-family: cursive;
+}
+
+header .options-icon {
+    position: relative;
+}
+
+header .side-panel {
+    position: absolute;
+    margin-top: 0;
+    margin-right: 0;
+    top: -0.7rem;
+    right: -20rem;
+    transition: 0.5s;
+    height: 100vh;
+    width: min(50vw, 20rem);
+    background-color: #666;
+}
+
+@media (min-width: 600px) {
+    header .side-panel {
+        right: -1000px;
+    }
+}
+
+header .options-icon:hover .side-panel {
+    right: -0.7rem;
+}
+
+.side-panel .game-image {
+    margin: 2rem auto;
+    width: 5rem;
+    height: 5rem;
+}
+
+.side-panel .game-image i {
+    text-align: center;
+    color: rgb(255, 210, 0);
+}
+
+.side-panel .socials ul {
+    font-size: 1em;
+    list-style: none;
+    margin: 0;
+    text-align: left;
+    padding: 1em;
+}
+
+.socials ul li {
+    height: 2rem;
+}
+
+.socials ul a {
+    text-decoration: none;
+    color: #aaf;
+}
+
+.controls {
+    margin: 0 0;
+    width: 100%;
+    aspect-ratio: 8;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    background-color: #000;
+}
+
+.controls div {
+    width: 25%;
+}
+
+.controls button {
+    width: 100%;
+    padding: 0.5em;
+}
+
+button:disabled {
+    font-size: 0.8rem;
+    background-color: #666;
+    font-weight: bold;
+    color: #f55;
+    border: 2px inset red;
+}
+
+#smilie {
+    background-color: #666;
+    width: 100%;
+}
+
+#smile {
+    text-align: center;
+    margin: 0 auto;
+    color: #fd0;
+}
+
+#flag-button {
+    color: #e66;
+}
+
+form {
+    color: #fff;
+    margin: 0 auto;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+form span {
+    color: #aaf;
+}
+
+form>* {
+    width: 100%;
+    font-size: 1.5rem;
+}
+
+form>button {
+    margin-top: 5px;
+    width: 80%;
+}
+
+#board {
+    aspect-ratio: 2/2.2;
+    border: 10px solid #000;
+    background-color: #333;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 /*tiles*/
-#board div{
-  width: 12.5%;
-  height: 12.5%;
-  border: 3px outset whitesmoke;
-  
-  /* text */
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+#board div {
+    width: 12.5%;
+    height: 12.5%;
+    border: 3px outset whitesmoke;
+    /* text */
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
+
 
 /*socials*/
-footer{
-  font-size: 1rem;
-  position: fixed;
-  bottom: -6rem;
-  left: 50%;
-  transform: translate(-50%);
-  height: 8rem;
-  width: 100%;
-  transition: 0.8s;
-}
-footer:hover{
-  bottom: 0;
-}
-footer div{
-  margin: 0;
-  padding: 0;
-  margin-top: -1px;
-}
-.footer-button{
-  font-size: 1em;
-  padding-inline: 20px;
-  float: bottom;
-  height: 1.7em;
-  text-align: center;
-  margin: 0;
-  
-  border: none;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: #5599ff;
-}
-footer ul{
-  font-size: 1em;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: #5599ff;
-  list-style: none;
-  padding-top: 5px;
-  margin: 0;
-}
-footer ul li{
-  height: 2rem;
-  width: min(50%, 200px);
-}
-footer ul:first-child{
-  padding-top: 1rem;
-}
-footer ul a{
-  text-decoration: none;
-  color: black;
+
+footer {
+    font-size: 1rem;
+    position: fixed;
+    bottom: -6rem;
+    left: 50%;
+    transform: translate(-50%);
+    height: 8rem;
+    width: 100%;
+    transition: 0.8s;
 }
 
+footer:hover {
+    bottom: 0;
+}
+
+footer div {
+    margin: 0;
+    padding: 0;
+    margin-top: -1px;
+}
+
+.footer-button {
+    font-size: 1em;
+    padding-inline: 20px;
+    float: bottom;
+    height: 1.7em;
+    text-align: center;
+    margin: 0;
+    border: none;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #5599ff;
+}
+
+footer ul {
+    font-size: 1em;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: #5599ff;
+    list-style: none;
+    padding-top: 5px;
+    margin: 0;
+}
+
+footer ul li {
+    height: 2rem;
+    width: min(50%, 200px);
+}
+
+footer ul:first-child {
+    padding-top: 1rem;
+}
+
+footer ul a {
+    text-decoration: none;
+    color: black;
+}
+
+
 /*giving different colors for different numbers*/
-.x1{
-  color: rgb(0,170,255);
+
+.x1 {
+    color: rgb(0, 170, 255);
 }
-.x2{
-  color: limegreen;
+
+.x2 {
+    color: limegreen;
 }
-.x3{
-  color: red;
+
+.x3 {
+    color: red;
 }
-.x4{
-  color: aqua;
+
+.x4 {
+    color: aqua;
 }
-.x5{
-  color: fuchsia;
+
+.x5 {
+    color: fuchsia;
 }
-.x6{
-  color: orange;
+
+.x6 {
+    color: orange;
 }
-.x7{
-  color: orange;
+
+.x7 {
+    color: orange;
 }
-.x8{
-  color: orange;
+
+.x8 {
+    color: orange;
 }
