@@ -112,12 +112,19 @@ header .options-icon:hover .side-panel {
 }
 
 .controls div {
+    width: auto;
     width: 25%;
 }
 
 .controls button {
     width: 100%;
     padding: 0.5em;
+}
+
+.controls button div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 button:disabled {
@@ -130,7 +137,6 @@ button:disabled {
 
 #smilie {
     background-color: #666;
-    width: 100%;
 }
 
 #smile {
