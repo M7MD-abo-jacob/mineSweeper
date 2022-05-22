@@ -9,7 +9,7 @@ var mineClass = "fa-flag"; // added when mine is flagged
 var gradientBlue = "linear-gradient(#1d8cd1, 30%, #0c1e69)";
 var gradientGreen = "linear-gradient(#72e66e, 30%, #0c750d)";
 var gradientBlack = "linear-gradient(#000, 80%, #444)";
-var gradientRed = "linear-gradient(#bd3a3a, 70%, #de5f5f)";
+var gradientRed = "linear-gradient(#bd0d0d, 80%, #de5f5f)";
 var gradientOrange = "linear-gradient(#db831f, 30%, #db9b51)";
 
 var gameStarted = false; //used is setMines() just to make sure the first tile clicked is not a mine
