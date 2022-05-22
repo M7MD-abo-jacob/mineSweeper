@@ -9,73 +9,73 @@ please let me know if you have any suggestions, and I hope you like it.
 <html>
 
 <head>
-    <script src="https://kit.fontawesome.com/11b49ba885.js" crossorigin="anonymous"></script>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Minesweeper</title>
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="style.css" />
+  <script src="https://kit.fontawesome.com/11b49ba885.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minesweeper</title>
+  <link rel="stylesheet" href="normalize.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-    <header>
-        <div class="container">
-            <div class="brand">
-                <h3>Minesweeper</h3>
-            </div>
-            <div class="options-icon">
-                <i class="fa-solid fa-circle-info"></i>
-                <div class="side-panel">
-                    <div class="game-image">
-                        <i class="fa-solid fa-face-smile-beam fa-2x"></i>
-                    </div>
-                    <div class="socials">
-                        <ul>
-                            <li>my socials:</li>
-                            <li><a href="https://www.facebook.com/m7md.master1"><i class="fab fa-facebook"></i> Facebook</a></li>
-                            <li><a href="https://www.instagram.com/m7md.abo_jacob/"><i class="fab fa-instagram"></i> Instagram</a></li>
-                            <li><a href="https://github.com/M7MD-abo-jacob"><i class="fab fa-github"></i> Github</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <div class="game-body">
-
-        <div class="controls">
-            <div>
-                <button disabled>mines: <span id="mines-count">0</span></button>
-            </div>
-            <div class="new-game">
-                <button id="smilie" onclick="newGame()"> <div id="smile">
-        <i class="fa-solid fa-face-smile-beam fa-2x"></i>
+  <header>
+    <div class="container">
+      <div class="brand">
+        <h3>Minesweeper</h3>
       </div>
-      </button>
-            </div>
-            <div>
-                <button id="flag-button"><i class="fa-solid fa-bomb fa-xl"></i></button>
-            </div>
+      <div class="options-icon">
+        <i class="fa-solid fa-circle-info fa-xl"></i>
+        <div class="side-panel">
+          <div class="game-image">
+            <i class="fa-solid fa-face-smile-beam fa-2x"></i>
+          </div>
+          <div class="socials">
+            <ul>
+              <li>my socials:</li>
+              <li><a href="https://www.facebook.com/m7md.master1"><i class="fab fa-facebook"></i> Facebook</a></li>
+              <li><a href="https://www.instagram.com/m7md.abo_jacob/"><i class="fab fa-instagram"></i> Instagram</a></li>
+              <li><a href="https://github.com/M7MD-abo-jacob"><i class="fab fa-github"></i> Github</a></li>
+            </ul>
+          </div>
         </div>
-        <main>
-            <div id="board">
-                <!--the input form at the beginning-->
-                <form class="settings">
-                    <label for="mn">mines count</label>
-                    <input type="range" min="5" max="10" id="mn" value="5" oninput="setMN()">
-                    <span id="mn-val">5</span>
-                    <br />
-                    <label for="tpl">tiles per line</label>
-                    <input type="range" min="5" max="10" id="tpl" value="5" oninput="setTPL()">
-                    <span id="tpl-val">5</span>
-                    <br />
-                    <button type="button" onclick="start()">start</button>
-                </form>
-            </div>
-        </main>
-
+      </div>
     </div>
-    <script src="script.js"></script>
+  </header>
+  <div class="game-body">
+
+    <div class="controls">
+      <div>
+        <button disabled>mines: <span id="mines-count">0</span></button>
+      </div>
+      <div class="new-game">
+        <button id="smilie" onclick="newGame()"> <div id="smile">
+          <i class="fa-solid fa-face-smile-beam fa-2x"></i>
+        </div>
+        </button>
+      </div>
+      <div>
+        <button id="flag-button"><i class="fa-solid fa-flag"></i></button>
+      </div>
+    </div>
+    <main>
+      <div id="board">
+        <!--the input form at the beginning-->
+        <form class="settings">
+          <label for="mn">mines count</label>
+          <input type="range" min="5" max="10" id="mn" value="5" oninput="setMN()">
+          <span id="mn-val">5</span>
+          <br />
+          <label for="tpl">tiles per line</label>
+          <input type="range" min="5" max="10" id="tpl" value="5" oninput="setTPL()">
+          <span id="tpl-val">5</span>
+          <br />
+          <button type="button" onclick="start()">start</button>
+        </form>
+      </div>
+    </main>
+
+  </div>
+  <script src="script.js"></script>
 </body>
 
 </html>

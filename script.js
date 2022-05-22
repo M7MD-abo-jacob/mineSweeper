@@ -5,7 +5,12 @@ var minesLocations = []; //on 2d array
 var tilesClicked = 0; //win when lines*lines-mines == 0
 var flagToggled = false; //to flag tiles
 var gameOver = false;
-var mineClass = "fa-bomb"; // added when mine is flagged
+var mineClass = "fa-flag"; // added when mine is flagged
+var gradientBlue = "linear-gradient(#1d8cd1, 30%, #0c1e69)";
+var gradientGreen = "linear-gradient(#72e66e, 30%, #0c750d)";
+var gradientBlack = "linear-gradient(#000, 80%, #444)";
+var gradientRed = "linear-gradient(#bd3a3a, 70%, #de5f5f)";
+var gradientOrange = "linear-gradient(#db831f, 30%, #db9b51)";
 
 var gameStarted = false; //used is setMines() just to make sure the first tile clicked is not a mine
 
@@ -87,10 +92,10 @@ function setMines(tile) {
 function toggleFlag() {
   if (flagToggled) {
     flagToggled = false;
-    document.getElementById("flag-button").style.backgroundColor = "#ccc";
+    document.getElementById("flag-button").style.backgroundImage = "linear-gradient(#ddd, #aaa)";
   } else {
     flagToggled = true;
-    document.getElementById("flag-button").style.backgroundColor = "#666";
+    document.getElementById("flag-button").style.backgroundImage = "linear-gradient(#333, #afa)";
   }
 }
 
@@ -98,6 +103,7 @@ function toggleFlag() {
 function clickTile() {
   let tile = this;
   let mc = document.getElementById("mines-count").innerText;
+  // the first click
   if(!gameStarted){
     setMines(tile);
     gameStarted = true;
@@ -106,13 +112,15 @@ function clickTile() {
     return;
   }
   if (flagToggled) {
-    if (!tile.children[0].classList.contains(mineClass) && mc > 0) {
+    if (!tile.children[0].classList.contains(mineClass) && mc > 0 && !tile.classList.contains("tile-clicked")) {
       tile.children[0].classList.add(mineClass);
-      tile.children[0].style.color = "#e66";
+      tile.children[0].style.color = "#000";
+      tile.style.backgroundImage = gradientOrange;
       document.getElementById("mines-count").innerText -=1;
     } else {
       if (tile.children[0].classList.contains(mineClass)) {
         tile.children[0].classList.remove(mineClass);
+      tile.style.backgroundImage = gradientBlue;
         document.getElementById("mines-count").innerText = parseInt(mc) + 1;
       }
       return;
@@ -122,7 +130,7 @@ function clickTile() {
       gameOver = true;
       document.getElementById("smile").children[0].classList.remove("fa-face-smile-beam");
       document.getElementById("smile").children[0].classList.add("fa-face-frown");
-      revealMines("red");
+      revealMines(gradientRed, "fa-explosion");
       alert("GAME OVER");
       return;
     } 
@@ -133,14 +141,14 @@ function clickTile() {
   }}
 
 // reveals mines when lose or win
-function revealMines(clr) {
+function revealMines(clr, icon) {
   for (let r = 0; r < lines; r++) {
     for (let c = 0; c < lines; c++) {
       let tile = board[r][c];
       if (minesLocations.includes(tile.id)) {
-        tile.children[0].classList.add(mineClass);
-        tile.style.backgroundColor = clr;
-        tile.style.borderColor = clr;
+        tile.children[0].classList.add(icon);
+        tile.style.backgroundImage = clr;
+        tile.style.border = "1px solid whitesmoke";
         tile.children[0].style.color = "black";
       }
     }
@@ -159,7 +167,7 @@ function checkMine(r, c) {
   }
   board[r][c].classList.add("tile-clicked");
   board[r][c].style.border = "1px solid whitesmoke";
-  board[r][c].style.backgroundColor = "#666";
+  board[r][c].style.backgroundImage = gradientBlack;
   
   // checking how many mines are around this tile
   tilesClicked += 1;
@@ -178,7 +186,7 @@ function checkMine(r, c) {
     board[r][c].classList.add("x"+minesFound.toString());
     board[r][c].classList.add("tile-clicked");
   board[r][c].style.border = "1px solid whitesmoke";
-  board[r][c].style.backgroundColor = "#666";
+  board[r][c].style.backgroundImage = gradientBlack;
   } else {
     // if no mines found around, it keeps opening blank tiles
     checkMine(r-1, c-1); //top left
@@ -195,7 +203,7 @@ function checkMine(r, c) {
     document.getElementById("mines-count").innerText = "0";
     document.getElementById("smile").children[0].classList.remove("fa-face-smile-beam");
     document.getElementById("smile").children[0].classList.add("fa-face-grin-stars");
-    revealMines("limegreen");
+    revealMines(gradientGreen, "fa-flag");
     gameOver = true;
   }
 }
